@@ -1,0 +1,29 @@
+body {
+    /* background-image: url("../images/memphis-colorful.png"); */
+    /* background-image: url("../images/grey.png"); */
+    background-image: url("../images/hypnotize.png");
+    
+}
+
+header {
+    background-color: #ccffdc;
+    border-bottom: 10px solid #989fa2;
+    height: 120px;
+    text-align: center;
+    margin-top: 0px;
+    /* border-radius: 10px; */
+}
+
+header img {
+    padding: 10px;
+}
+
+.main {
+    height: 550px;
+    background-color: #FFF;
+    width: 60%;
+    margin: 0px auto;
+    margin-top: 50px;
+    border: 1px #88D498 solid;
+    border-radius: 10px;
+}
