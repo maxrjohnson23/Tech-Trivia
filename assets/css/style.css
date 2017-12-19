@@ -2,6 +2,7 @@ body {
     /* background-image: url("../images/memphis-colorful.png"); */
     /* background-image: url("../images/grey.png"); */
     background-image: url("../images/hypnotize.png");
+    font-family: 'Work Sans', sans-serif;
     
 }
 
@@ -24,6 +25,21 @@ header img {
     width: 60%;
     margin: 0px auto;
     margin-top: 50px;
-    border: 1px #88D498 solid;
+    border: 5px #989fa2 solid;
     border-radius: 10px;
+}
+
+footer {
+    position: absolute;
+    bottom: 0;
+    text-align: center;
+    width: 100%;
+    background-color: #ccffdc;
+    border-top: 5px solid #989fa2;
+}
+
+footer small {
+    line-height: 40px;
+    color: #000;
+    font-size: 12px;
 }
