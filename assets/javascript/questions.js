@@ -1,5 +1,5 @@
-function getQuestions() {
-    var questions = [
+var questionBank = {
+    questions: [
         {
             questionText: "Question A?",
             answers: [
@@ -105,24 +105,35 @@ function getQuestions() {
         //         }
         //     ]
         // }
-    ];
+    ],
+    getQuestions: function () {
+        // Shuffle order of answers in each question
+        for (var i = 0; i < this.questions.length; i++) {
+            shuffleArray(this.questions[i].answers);
+        }
+        // Shuffle order of all the questions
+        return shuffleArray(this.questions);
+        function shuffleArray(array) {
+            for (var i = array.length - 1; i > 0; i--) {
+                var j = Math.floor(Math.random() * (i + 1));
+                var temp = array[i];
+                array[i] = array[j];
+                array[j] = temp;
+            }
+            return array;
+        }
+    },
 
-    // Shuffle order of answers in each question
-    for(var i = 0; i < questions.length; i++) {
-        shuffleArray(questions[i].answers);
-    }
 
-    // Shuffle order of all the questions
-    return shuffleArray(questions);
 };
 
-// Shuffle an array usiung the Durstenfeld shuffle algorithm
-function shuffleArray(array) {
-    for(var i = array.length - 1; i > 0; i-- ) {
-        var j = Math.floor(Math.random() * (i + 1));
-        var temp = array[i];
-        array[i] = array[j];
-        array[j] = temp;
-    }
-    return array;
-}
+// // Shuffle an array usiung the Durstenfeld shuffle algorithm
+// function shuffleArray(array) {
+//     for (var i = array.length - 1; i > 0; i--) {
+//         var j = Math.floor(Math.random() * (i + 1));
+//         var temp = array[i];
+//         array[i] = array[j];
+//         array[j] = temp;
+//     }
+//     return array;
+// }

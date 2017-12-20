@@ -1,6 +1,6 @@
 var game = {
     // get question list from external JS file
-    questions: getQuestions(),
+    questions: questionBank.getQuestions(),
     currentQuestionIndex: 0,
     incorrectAnswers: 0,
     correctAnswers: 0,
@@ -70,7 +70,7 @@ var game = {
         screenHandler.resetGame();
         this.correctAnswers = 0;
         this.incorrectAnswers = 0;
-        this.questions = getQuestions();
+        this.questions = questionBank.getQuestions();
         this.currentQuestionIndex = 0;
         console.log("Restting game");
         this.startGame();
