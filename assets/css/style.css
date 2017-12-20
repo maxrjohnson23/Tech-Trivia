@@ -3,7 +3,6 @@ body {
     /* background-image: url("../images/grey.png"); */
     background-image: url("../images/hypnotize.png");
     font-family: 'Work Sans', sans-serif;
-    
 }
 
 header {
@@ -42,16 +41,77 @@ header img {
 .answer-choice {
     font-size: 28px;
     width: 80%;
-    margin: 20px auto;
+    margin: 10px auto;
     text-align: left;
+    border-radius: 10px;
+    padding: 10px;
 }
 
 .correct-answer {
-    background-color: green;
+    background-color: #93ff93;
 }
 
 .incorrect-answer {
-    background-color: red;
+    background-color: #ffa8a8;
+}
+
+#summary-modal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.4);
+}
+
+.game-summary {
+    box-sizing: border-box;
+    position: absolute;
+    top: 40%;
+    left: 50%;
+    height: 400px;
+    width: 600px;
+    margin-left: -300px;
+    margin-top: -200px;
+    background-color: #f9f9f9;
+    border: 10px solid #8ef1cc;
+    border-radius: 10px;
+    text-align: center;
+    padding: 40px 20px 0 20px;
+}
+
+.game-summary h1 {
+    display: inline-block;
+    font-size: 42px;
+    padding-bottom: 5px;
+    border-bottom: 2px solid #000;
+}
+
+.game-summary h2 {
+    padding-top: 15px;
+    font-size: 50px;
+}
+
+.game-summary h3 {
+    font-size: 28px;
+    padding-top: 20px;
+}
+
+#play-again {
+    position: absolute;
+    left: 50%;
+    bottom: 0;
+    transform: translate(-50%, 0);
+    padding: 15px 40px;
+    background-color: #000;
+    color: #fff;
+    font-size: 18px;
+    border: 2px solid #000;
+    font-weight: bold;
+    border-radius: 10px;
+    margin-bottom: 10px;
 }
 
 footer {

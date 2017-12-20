@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,13 +10,24 @@
     <link rel="stylesheet" href="assets/css/reset.css">
     <link rel="stylesheet" href="assets/css/style.css">
 </head>
+
 <body>
     <header>
-        <img src="assets/images/logo.png" alt="Tech Trivia Logo"/>
+        <img src="assets/images/logo.png" alt="Tech Trivia Logo" />
     </header>
     <div class="main">
         <div class="question-text"></div>
         <div class="answers"></div>
+    </div>
+    <div id="summary-modal">
+        <div class="game-summary">
+            <h1>Game Summary</h3>
+            <h3>Correct Answers: <span id="correct"></span></h3>
+            <h3>Incorrect Answers: <span id="incorrect"></span></h3>
+            <h3>Score:</h3>
+            <h2><span id="score"></span>%</h2>
+            <button id="play-again">Play Again</button>
+        </div>
     </div>
     <footer class="footer">
         <div class="container">
@@ -23,7 +35,8 @@
         </div>
     </footer>
     <script src="https://code.jquery.com/jquery-3.2.1.js" integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE=" crossorigin="anonymous"></script>
-    <script type="text/javascript" src="assets/javascript/questions.js"></script>    
+    <script type="text/javascript" src="assets/javascript/questions.js"></script>
     <script type="text/javascript" src="assets/javascript/app.js"></script>
 </body>
+
 </html>

@@ -5,11 +5,12 @@ var game = {
     incorrectAnswers: 0,
     correctAnswers: 0,
     // 30 second timer on each question
-    timePerQuestion: 5000,
+    timePerQuestion: 3000,
     // Time to display correct answer details
-    answerSummaryTime: 3000,
+    answerSummaryTime: 2000,
     // handle for the timeout functions
-    currentTimeoutHandle: undefined,
+    questionTimeoutHandle: undefined,
+    clockTickHandle: undefined,
     startGame: function () {
         this.showQuestion(this.currentQuestionIndex);
 
@@ -18,10 +19,11 @@ var game = {
         this.currentQuestionIndex = questionIndex;
         // Start timer for each question displayed
         screenHandler.displayQuestionDetails(this.questions[questionIndex]);
-        this.currentTimeoutHandle = setTimeout(function () {
+        this.questionTimeoutHandle = setTimeout(function () {
             // No answer selected on timeout
             game.evaluateAnswer();
         }, this.timePerQuestion);
+
 
     },
     evaluateAnswer: function (answerId) {
@@ -29,8 +31,8 @@ var game = {
         // remove click functions from answers
         screenHandler.disableAnswerSelection();
         // remove timeout if user selects answer
-        clearTimeout(this.currentTimeoutHandle);
-        
+        clearTimeout(this.questionTimeoutHandle);
+
         var currentQuestion = this.questions[this.currentQuestionIndex];
 
         // Update correct/incorrect count for game summary
@@ -62,6 +64,18 @@ var game = {
     },
     showGameSummary: function () {
         console.log("Showing game summary");
+        screenHandler.displayGameSummary();
+    },
+    reset: function(){
+        screenHandler.resetGame();
+        this.correctAnswers = 0;
+        this.incorrectAnswers = 0;
+        this.questions = getQuestions();
+        this.currentQuestionIndex = 0;
+        console.log("Restting game");
+        this.startGame();
+
+
     }
 }
 
@@ -97,6 +111,26 @@ var screenHandler = {
     },
     disableAnswerSelection: function () {
         $(".answer-choice").off("click");
+    },
+    displayGameSummary: function() {
+        $(".answers").empty();
+        $(".question-text").empty();
+        // Show screen overlay with game results
+        $("#correct").text(game.correctAnswers);
+        $("#incorrect").text(game.incorrectAnswers);
+        // Calculate percentage score
+        var score = (game.correctAnswers / game.questions.length) * 100;
+        $("#score").text(score);
+        $("#summary-modal").show();
+
+        // bind click events to play again button
+        $("#play-again").on("click", function() {
+            game.reset();
+        });
+    },
+    resetGame: function() {
+        $("#summary-modal").hide();
+        $("#play-again").off("click");        
     }
 }
 

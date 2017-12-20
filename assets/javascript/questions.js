@@ -41,70 +41,70 @@ function getQuestions() {
                     isCorrectAnswer: false
                 }
             ]
-        },
-        {
-            questionText: "Question C?",
-            answers: [
-                {
-                    answerText: "Answer 1",
-                    isCorrectAnswer: true
-                },
-                {
-                    answerText: "Answer 2",
-                    isCorrectAnswer: false
-                },
-                {
-                    answerText: "Answer 3",
-                    isCorrectAnswer: false
-                },
-                {
-                    answerText: "Answer 4",
-                    isCorrectAnswer: false
-                }
-            ]
-        },
-        {
-            questionText: "Question D?",
-            answers: [
-                {
-                    answerText: "Answer 1",
-                    isCorrectAnswer: false
-                },
-                {
-                    answerText: "Answer 2",
-                    isCorrectAnswer: false
-                },
-                {
-                    answerText: "Answer 3",
-                    isCorrectAnswer: false
-                },
-                {
-                    answerText: "Answer 4",
-                    isCorrectAnswer: true
-                }
-            ]
-        },
-        {
-            questionText: "Question E?",
-            answers: [
-                {
-                    answerText: "Answer 1",
-                    isCorrectAnswer: false
-                },
-                {
-                    answerText: "Answer 2",
-                    isCorrectAnswer: false
-                },
-                {
-                    answerText: "Answer 3",
-                    isCorrectAnswer: true
-                },
-                {
-                    answerText: "Answer 4",
-                    isCorrectAnswer: false
-                }
-            ]
         }
+        // {
+        //     questionText: "Question C?",
+        //     answers: [
+        //         {
+        //             answerText: "Answer 1",
+        //             isCorrectAnswer: true
+        //         },
+        //         {
+        //             answerText: "Answer 2",
+        //             isCorrectAnswer: false
+        //         },
+        //         {
+        //             answerText: "Answer 3",
+        //             isCorrectAnswer: false
+        //         },
+        //         {
+        //             answerText: "Answer 4",
+        //             isCorrectAnswer: false
+        //         }
+        //     ]
+        // },
+        // {
+        //     questionText: "Question D?",
+        //     answers: [
+        //         {
+        //             answerText: "Answer 1",
+        //             isCorrectAnswer: false
+        //         },
+        //         {
+        //             answerText: "Answer 2",
+        //             isCorrectAnswer: false
+        //         },
+        //         {
+        //             answerText: "Answer 3",
+        //             isCorrectAnswer: false
+        //         },
+        //         {
+        //             answerText: "Answer 4",
+        //             isCorrectAnswer: true
+        //         }
+        //     ]
+        // },
+        // {
+        //     questionText: "Question E?",
+        //     answers: [
+        //         {
+        //             answerText: "Answer 1",
+        //             isCorrectAnswer: false
+        //         },
+        //         {
+        //             answerText: "Answer 2",
+        //             isCorrectAnswer: false
+        //         },
+        //         {
+        //             answerText: "Answer 3",
+        //             isCorrectAnswer: true
+        //         },
+        //         {
+        //             answerText: "Answer 4",
+        //             isCorrectAnswer: false
+        //         }
+        //     ]
+        // }
     ];
 
     // Shuffle order of answers in each question
