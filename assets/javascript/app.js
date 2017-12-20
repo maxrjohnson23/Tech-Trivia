@@ -1,37 +1,41 @@
 var game = {
     // get question list from external JS file
     questions: getQuestions(),
+    currentQuestionIndex: 0,
     incorrectAnswers: 0,
     correctAnswers: 0,
-    currentQuestionIndex: 0,
-    currentTimeoutHandle: undefined,
     // 30 second timer on each question
     timePerQuestion: 5000,
     // Time to display correct answer details
     answerSummaryTime: 3000,
+    // handle for the timeout functions
+    currentTimeoutHandle: undefined,
     startGame: function () {
         this.showQuestion(this.currentQuestionIndex);
-        // for (var i = 0; i < this.questions.length; i++) {
-        // }
+
     },
     showQuestion: function (questionIndex) {
         this.currentQuestionIndex = questionIndex;
-        // Start timeer for each question displayed
+        // Start timer for each question displayed
         screenHandler.displayQuestionDetails(this.questions[questionIndex]);
         this.currentTimeoutHandle = setTimeout(function () {
-            game.showAnswerSummary(null)
+            // No answer selected on timeout
+            game.evaluateAnswer();
         }, this.timePerQuestion);
 
     },
-    showAnswerSummary: function (answerId) {
+    evaluateAnswer: function (answerId) {
         console.log("Showing answer summary");
         // remove click functions from answers
         screenHandler.disableAnswerSelection();
+        // remove timeout if user selects answer
+        clearTimeout(this.currentTimeoutHandle);
+        
         var currentQuestion = this.questions[this.currentQuestionIndex];
 
         // Update correct/incorrect count for game summary
-        if (answerId) {
-            currentQuestion.answers[answerId].isCorrectAnswer ? this.correctAnswers++ : this.incorrectAnswers++;
+        if (answerId && currentQuestion.answers[answerId].isCorrectAnswer) {
+            this.correctAnswers++;
         } else {
             // No answer selected - question timeout
             this.incorrectAnswers++;
@@ -40,7 +44,7 @@ var game = {
         // Get index of correct answer for the current question
         var correctAnswerId = currentQuestion.answers.findIndex(ans => ans.isCorrectAnswer);
         console.log("Correct answer: " + correctAnswerId);
-        screenHandler.showAnswerSummary(Number(answerId), correctAnswerId);
+        screenHandler.displayAnswerSummary(Number(answerId), correctAnswerId);
         this.currentTimeoutHandle = setTimeout(function () {
             game.nextQuestion();
         }, this.answerSummaryTime);
@@ -81,9 +85,9 @@ var screenHandler = {
     answerClicked: function () {
         // check answer ID against current question
         var answerId = $(this).attr("data-answer");
-        game.checkAnswer(answerId);
+        game.evaluateAnswer(answerId);
     },
-    showAnswerSummary: function (selectedId, correctId) {
+    displayAnswerSummary: function (selectedId, correctId) {
         if (selectedId !== correctId) {
             // Highlight incorrect answer
             $(`.answer-choice[data-answer="${selectedId}"`).addClass("incorrect-answer");
