@@ -25,27 +25,25 @@ var game = {
         this.clockTime = this.timePerQuestion / 1000;
         screenHandler.displayTime(game.clockTime);
         // set interval to update clock        
-        this.clockTickHandle = setInterval(function() {
-            console.log(game.clockTime);
+        this.clockTickHandle = setInterval(function () {
             game.clockTick();
-        },1000);
+        }, 1000);
     },
-    clockTick: function() {
+    clockTick: function () {
         game.clockTime--;
         screenHandler.displayTime(game.clockTime);
-        if(game.clockTime === 0) {
+        if (game.clockTime === 0) {
             // 
             game.evaluateAnswer();
             clearInterval(game.clockTickHandle);
         }
     },
     evaluateAnswer: function (answerId) {
-        console.log("Showing answer summary");
         // remove click functions from answers
         screenHandler.disableAnswerSelection();
         // clear timeouts if user selects answer
         clearTimeout(this.questionTimeoutHandle);
-        clearInterval(this.clockTickHandle);        
+        clearInterval(this.clockTickHandle);
 
         var currentQuestion = this.questions[this.currentQuestionIndex];
 
@@ -59,14 +57,12 @@ var game = {
 
         // Get index of correct answer for the current question
         var correctAnswerId = currentQuestion.answers.findIndex(ans => ans.isCorrectAnswer);
-        console.log("Correct answer: " + correctAnswerId);
         screenHandler.displayAnswerSummary(Number(answerId), correctAnswerId);
         this.currentTimeoutHandle = setTimeout(function () {
             game.nextQuestion();
         }, this.answerSummaryTime);
     },
     nextQuestion: function () {
-        console.log("On to next question");
         this.currentQuestionIndex++;
         // If questions remain, continue game
         if (this.currentQuestionIndex < this.questions.length) {
@@ -77,17 +73,15 @@ var game = {
         }
     },
     showGameSummary: function () {
-        console.log("Showing game summary");
         screenHandler.displayGameSummary();
     },
-    reset: function(){
+    reset: function () {
         screenHandler.resetGame();
         // Reset game to initial settings
         this.correctAnswers = 0;
         this.incorrectAnswers = 0;
         this.questions = questionBank.getQuestions();
         this.currentQuestionIndex = 0;
-        console.log("Restting game");
         this.startGame();
     }
 }
@@ -125,7 +119,7 @@ var screenHandler = {
     disableAnswerSelection: function () {
         $(".answer-choice").off("click");
     },
-    displayGameSummary: function() {
+    displayGameSummary: function () {
         $(".answers").empty();
         $(".question-text").empty();
         // Show screen overlay with game results
@@ -137,24 +131,29 @@ var screenHandler = {
         $("#summary-modal").show();
 
         // bind click events to play again button
-        $("#play-again").on("click", function() {
+        $("#play-again").on("click", function () {
             game.reset();
         });
     },
-    displayTime: function(seconds) {
+    displayTime: function (seconds) {
         // add leading zeroes to seconds if needed
-        paddedSeconds = String(seconds).padStart(2,"0");
+        paddedSeconds = String(seconds).padStart(2, "0");
         $(".timer").text(`00:${paddedSeconds}`);
     },
-    resetGame: function() {
+    resetGame: function () {
         $("#summary-modal").hide();
-        $("#play-again").off("click");        
+        $("#play-again").off("click");
     }
 }
 
+$(".timer").text("Technology trivia covering computers, the Internet, companies, and people.");
+$(".question-text").html("<button id='start-button'>Play</button>");
 
-console.log(game.questions);
-game.startGame();
+$("#start-button").on("click", function (event) {
+
+    $(this).off("keydown");
+    game.startGame();
+});
 
 
 

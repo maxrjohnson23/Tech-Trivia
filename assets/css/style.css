@@ -119,6 +119,28 @@ header img {
     margin-bottom: 10px;
 }
 
+#start-button {
+    background-color: #000;
+    color: #fff;
+    background-color: #ccffdc;
+    color: #000;
+    font-size: 24px;
+    border: 2px solid #000;
+    font-weight: bold;
+    border-radius: 10px;
+    padding: 15px 40px;
+}
+
+#start-button:hover {
+    background-color: #000;
+    color: #fff;
+    font-size: 24px;
+    border: 2px solid #000;
+    font-weight: bold;
+    border-radius: 10px;
+    padding: 15px 40px;
+}
+
 footer {
     position: absolute;
     bottom: 0;
