@@ -18,6 +18,7 @@ var game = {
     },
     showQuestion: function (questionIndex) {
         this.currentQuestionIndex = questionIndex;
+        screenHandler.updateQuestionNumber(this.currentQuestionIndex);
         // Start timer for each question displayed
         screenHandler.displayQuestionDetails(this.questions[questionIndex]);
 
@@ -139,6 +140,9 @@ var screenHandler = {
         // add leading zeroes to seconds if needed
         paddedSeconds = String(seconds).padStart(2, "0");
         $(".timer").text(`00:${paddedSeconds}`);
+    },
+    updateQuestionNumber: function(questionNum) {
+        $(".question-number").text(`${questionNum} / ${game.questions.length}`);
     },
     resetGame: function () {
         $("#summary-modal").hide();

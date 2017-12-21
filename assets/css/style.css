@@ -29,6 +29,11 @@ header img {
     text-align: center;
 }
 
+.question-number {
+    font-size: 24px;
+    padding-top: 5px;
+}
+
 .timer {
     margin-top: 50px;
     font-size: 50px;
