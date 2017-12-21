@@ -5,12 +5,13 @@ var game = {
     incorrectAnswers: 0,
     correctAnswers: 0,
     // 30 second timer on each question
-    timePerQuestion: 3000,
+    timePerQuestion: 30000,
     // Time to display correct answer details
     answerSummaryTime: 2000,
     // handle for the timeout functions
     questionTimeoutHandle: undefined,
     clockTickHandle: undefined,
+    clockTime: 0,
     startGame: function () {
         this.showQuestion(this.currentQuestionIndex);
 
@@ -19,19 +20,32 @@ var game = {
         this.currentQuestionIndex = questionIndex;
         // Start timer for each question displayed
         screenHandler.displayQuestionDetails(this.questions[questionIndex]);
-        this.questionTimeoutHandle = setTimeout(function () {
-            // No answer selected on timeout
+
+        // Set timer in seconds
+        this.clockTime = this.timePerQuestion / 1000;
+        screenHandler.displayTime(game.clockTime);
+        // set interval to update clock        
+        this.clockTickHandle = setInterval(function() {
+            console.log(game.clockTime);
+            game.clockTick();
+        },1000);
+    },
+    clockTick: function() {
+        game.clockTime--;
+        screenHandler.displayTime(game.clockTime);
+        if(game.clockTime === 0) {
+            // 
             game.evaluateAnswer();
-        }, this.timePerQuestion);
-
-
+            clearInterval(game.clockTickHandle);
+        }
     },
     evaluateAnswer: function (answerId) {
         console.log("Showing answer summary");
         // remove click functions from answers
         screenHandler.disableAnswerSelection();
-        // remove timeout if user selects answer
+        // clear timeouts if user selects answer
         clearTimeout(this.questionTimeoutHandle);
+        clearInterval(this.clockTickHandle);        
 
         var currentQuestion = this.questions[this.currentQuestionIndex];
 
@@ -68,14 +82,13 @@ var game = {
     },
     reset: function(){
         screenHandler.resetGame();
+        // Reset game to initial settings
         this.correctAnswers = 0;
         this.incorrectAnswers = 0;
         this.questions = questionBank.getQuestions();
         this.currentQuestionIndex = 0;
         console.log("Restting game");
         this.startGame();
-
-
     }
 }
 
@@ -119,7 +132,7 @@ var screenHandler = {
         $("#correct").text(game.correctAnswers);
         $("#incorrect").text(game.incorrectAnswers);
         // Calculate percentage score
-        var score = (game.correctAnswers / game.questions.length) * 100;
+        var score = Math.floor((game.correctAnswers / game.questions.length) * 100);
         $("#score").text(score);
         $("#summary-modal").show();
 
@@ -127,6 +140,11 @@ var screenHandler = {
         $("#play-again").on("click", function() {
             game.reset();
         });
+    },
+    displayTime: function(seconds) {
+        // add leading zeroes to seconds if needed
+        paddedSeconds = String(seconds).padStart(2,"0");
+        $(".timer").text(`00:${paddedSeconds}`);
     },
     resetGame: function() {
         $("#summary-modal").hide();
