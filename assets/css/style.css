@@ -1,8 +1,12 @@
+html {
+    position: relative;
+    min-height: 100%;
+}
+
 body {
-    /* background-image: url("../images/memphis-colorful.png"); */
-    /* background-image: url("../images/grey.png"); */
     background-image: url("../images/hypnotize.png");
     font-family: 'Work Sans', sans-serif;
+    margin-bottom: 60px;
 }
 
 header {
@@ -147,7 +151,7 @@ header img {
 }
 
 footer {
-    position: fixed;
+    position: absolute;
     bottom: 0;
     text-align: center;
     width: 100%;
