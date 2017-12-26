@@ -15,7 +15,6 @@ header {
     height: 120px;
     text-align: center;
     margin-top: 0px;
-    /* border-radius: 10px; */
 }
 
 header img {
@@ -23,7 +22,7 @@ header img {
 }
 
 .main {
-    height: 550px;
+    padding-bottom: 30px;
     background-color: #FFF;
     width: 60%;
     margin: 0px auto;

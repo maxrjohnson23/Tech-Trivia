@@ -106,7 +106,7 @@ var questionBank = {
             ]
         },
         {
-            questionText: "Which commerial music streaming service was founded in Sweden in 2006?",
+            questionText: "Which commercial music streaming service was founded in Sweden in 2006?",
             answers: [
                 {
                     answerText: "Spotify",
